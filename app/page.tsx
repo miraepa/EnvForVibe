@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 
 const guideData = [
   {
@@ -150,6 +150,22 @@ export default function VibeCodingDashboard() {
   const [currentStep, setCurrentStep] = useState(1);
   const [completedSteps, setCompletedSteps] = useState<number[]>([]);
   const [copiedText, setCopiedText] = useState<string | null>(null);
+  const scrollRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    if (scrollRef.current) {
+      if (typeof window !== 'undefined' && window.innerWidth < 1024) {
+        // Mobile: Scroll the window to the top of the section element (with header offset + some padding)
+        const yOffset = 220; // Adjusted for a bit more top spacing under the header
+        const element = scrollRef.current;
+        const y = element.getBoundingClientRect().top + window.scrollY + yOffset;
+        window.scrollTo({ top: y, behavior: 'smooth' });
+      } else {
+        // Desktop: Scroll the container itself
+        scrollRef.current.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    }
+  }, [currentStep]);
 
   const toggleCompletion = () => {
     setCompletedSteps(prev => {
@@ -219,8 +235,8 @@ export default function VibeCodingDashboard() {
   const strokeDashoffset = circumference - (percentage / 100) * circumference;
 
   return (
-    <div className="bg-slate-50 text-slate-800 font-sans antialiased min-h-screen flex flex-col">
-      <header className="bg-white shadow-sm border-b border-slate-200 sticky top-0 z-10 w-full">
+    <div className="bg-slate-50 text-slate-800 font-sans antialiased min-h-screen lg:h-screen lg:overflow-hidden flex flex-col">
+      <header className="bg-white shadow-sm border-b border-slate-200 shrink-0 z-10 w-full relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 flex flex-col sm:flex-row justify-between items-center gap-4">
           <div>
             <h1 className="text-2xl font-bold text-indigo-900 flex items-center gap-2">
@@ -239,157 +255,145 @@ export default function VibeCodingDashboard() {
         </div>
       </header>
 
-      <main className="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 flex flex-col lg:flex-row gap-8">
-        <aside className="w-full lg:w-1/3 flex flex-col gap-6">
-          <div className="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 flex flex-col items-center">
-            <h2 className="text-lg font-bold text-slate-800 mb-4 text-center">나의 여정 달성도</h2>
+      <div className="flex-1 lg:overflow-hidden w-full flex flex-col overscroll-none">
+        <main className="max-w-7xl w-full flex-1 min-h-0 mx-auto px-4 sm:px-6 lg:px-8 py-6 flex flex-col lg:flex-row gap-8">
+          <aside className="w-full lg:w-1/3 flex flex-col gap-6 lg:h-full shrink-0">
+            <div className="bg-white rounded-2xl shadow-sm border border-slate-200 p-4 flex flex-col items-center">
+              <h2 className="text-base font-bold text-slate-800 mb-2 text-center">나의 여정 달성도</h2>
 
-            <div className="relative w-48 h-48 flex items-center justify-center my-4">
-              <svg className="transform -rotate-90 w-full h-full" viewBox="0 0 200 200">
-                <circle
-                  cx="100"
-                  cy="100"
-                  r={radius}
-                  stroke="#e2e8f0"
-                  strokeWidth="20"
-                  fill="none"
-                />
-                <circle
-                  cx="100"
-                  cy="100"
-                  r={radius}
-                  stroke="#10b981"
-                  strokeWidth="20"
-                  fill="none"
-                  strokeDasharray={circumference}
-                  strokeDashoffset={strokeDashoffset}
-                  className="transition-all duration-1000 ease-in-out"
-                />
-              </svg>
-              <div className="absolute flex items-center justify-center flex-col">
-                <span className="text-3xl font-extrabold text-slate-800">{percentage}%</span>
+              <div className="w-full my-2">
+                <div className="flex justify-between items-end mb-1">
+                  <span className="text-xs font-semibold text-slate-700">진행률</span>
+                  <span className="text-lg font-extrabold text-indigo-600">{percentage}%</span>
+                </div>
+                <div className="w-full bg-slate-100 rounded-full h-3 overflow-hidden shadow-inner">
+                  <div
+                    className="bg-indigo-500 h-3 rounded-full transition-all duration-1000 ease-out"
+                    style={{ width: `${percentage}%` }}
+                  ></div>
+                </div>
               </div>
+
+              <p className="text-center text-xs text-slate-500 mt-2 font-medium">{motiText}</p>
             </div>
 
-            <p className="text-center text-sm text-slate-500 mt-4 font-medium">{motiText}</p>
-          </div>
+            <div className="bg-white rounded-2xl shadow-sm border border-slate-200 p-4 flex-grow flex flex-col min-h-0">
+              <h2 className="text-lg font-bold text-slate-800 mb-4 px-2 shrink-0">전체 단계 (10 Steps)</h2>
+              <nav className="flex flex-col gap-1 overflow-y-auto flex-1 pr-2 custom-scrollbar min-h-0">
+                {guideData.map((s) => {
+                  const isActive = currentStep === s.id;
+                  const isItemCompleted = completedSteps.includes(s.id);
+                  return (
+                    <button
+                      key={s.id}
+                      onClick={() => setCurrentStep(s.id)}
+                      className={`w-full text-left px-4 py-3 rounded-xl transition-all duration-200 flex items-center justify-between group ${isActive
+                        ? 'bg-indigo-600 text-white shadow-md'
+                        : 'hover:bg-indigo-50 text-slate-600 hover:text-indigo-900'
+                        }`}
+                    >
+                      <span className="text-sm font-semibold truncate pr-2">
+                        {s.id}. {s.title}
+                      </span>
+                      <span className={`text-lg transition-opacity ${isActive ? 'opacity-100' : 'opacity-50 group-hover:opacity-100'}`}>
+                        {isItemCompleted ? '✅' : '⏳'}
+                      </span>
+                    </button>
+                  );
+                })}
+              </nav>
+            </div>
+          </aside>
 
-          <div className="bg-white rounded-2xl shadow-sm border border-slate-200 p-4 flex-grow flex flex-col">
-            <h2 className="text-lg font-bold text-slate-800 mb-4 px-2">전체 단계 (10 Steps)</h2>
-            <nav className="flex flex-col gap-1 overflow-y-auto max-h-[50vh] pr-2 custom-scrollbar">
-              {guideData.map((s) => {
-                const isActive = currentStep === s.id;
-                const isItemCompleted = completedSteps.includes(s.id);
-                return (
+          <section ref={scrollRef} className="w-full lg:w-2/3 lg:h-full lg:overflow-y-auto custom-scrollbar pb-2 overscroll-none">
+            <div className="bg-white rounded-2xl shadow-md border border-slate-200 p-6 md:p-10 flex flex-col relative min-h-full">
+              <div className="mb-6 pb-6 border-b border-slate-100">
+                <h2 className="text-xl font-bold text-slate-800 mb-2">학습 영역에 오신 것을 환영합니다.</h2>
+                <p className="text-slate-600 leading-relaxed">
+                  이 공간은 <span className="font-semibold text-indigo-600">선택된 단계의 핵심 설명과 실행해야 할 명령어</span>를 보여줍니다.
+                  좌측 메뉴에서 단계를 선택하여 내용을 확인하고, 검은색 터미널 박스 안의 코드를 복사하여 여러분의 컴퓨터에 적용해 보세요.
+                  완료 후 '완료 표시' 버튼을 누르면 전체 진행률이 업데이트되어 성취감을 느낄 수 있습니다.
+                </p>
+              </div>
+
+              <div key={step.id} className="animate-fade-in flex-grow flex flex-col">
+                <div className="flex items-center justify-between mb-2">
+                  <span className="text-sm font-bold text-indigo-500 tracking-wider uppercase">Step {step.id}</span>
+                </div>
+                <h3 className="text-2xl font-extrabold text-slate-900 mb-4">{step.title}</h3>
+                <p
+                  className="text-slate-600 mb-8 text-lg bg-indigo-50/50 p-4 rounded-lg border-l-4 border-indigo-400"
+                  dangerouslySetInnerHTML={{ __html: step.desc }}
+                />
+
+                <h4 className="text-lg font-bold text-slate-800 mb-4 flex items-center gap-2">🎯 해야 할 일</h4>
+                <ul className="mb-6 flex-grow space-y-3">
+                  {step.tasks.map((task, idx) => (
+                    <li key={idx} className="flex items-start gap-3">
+                      <span className="flex-shrink-0 w-6 h-6 rounded-full bg-indigo-100 text-indigo-700 flex items-center justify-center text-xs font-bold mt-0.5">
+                        {idx + 1}
+                      </span>
+                      <span className="text-slate-700" dangerouslySetInnerHTML={{ __html: task }} />
+                    </li>
+                  ))}
+                </ul>
+
+                {step.code && (
+                  <div className="mt-8 bg-[#1e1e1e] rounded-xl overflow-hidden shadow-inner border border-slate-700">
+                    <div className="bg-[#2d2d2d] px-4 py-2 flex items-center justify-between border-b border-slate-600">
+                      <div className="flex gap-2">
+                        <div className="w-3 h-3 rounded-full bg-red-500"></div>
+                        <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
+                        <div className="w-3 h-3 rounded-full bg-green-500"></div>
+                      </div>
+                      <span className="text-xs text-slate-400 font-mono">Terminal (WSL)</span>
+                      <button
+                        onClick={() => copyCode(step.code as string)}
+                        className={`text-xs text-white px-3 py-1 rounded transition-colors flex items-center gap-1 ${copiedText ? 'bg-emerald-600' : 'bg-slate-700 hover:bg-slate-600'}`}
+                      >
+                        {copiedText ? `✨ 복사됨!` : `📋 복사하기`}
+                      </button>
+                    </div>
+                    <div className="p-4 overflow-x-auto text-sm font-mono text-green-400 whitespace-pre leading-relaxed custom-scrollbar-terminal">
+                      {step.code}
+                    </div>
+                  </div>
+                )}
+
+                <div className="mt-auto pt-8 flex justify-between items-center border-t border-slate-100">
                   <button
-                    key={s.id}
-                    onClick={() => setCurrentStep(s.id)}
-                    className={`w-full text-left px-4 py-3 rounded-xl transition-all duration-200 flex items-center justify-between group ${isActive
-                      ? 'bg-indigo-600 text-white shadow-md'
-                      : 'hover:bg-indigo-50 text-slate-600 hover:text-indigo-900'
+                    onClick={() => navigate(-1)}
+                    className={`text-slate-500 hover:text-indigo-600 font-medium px-4 py-2 flex items-center gap-1 ${step.id === 1 ? 'invisible' : ''}`}
+                  >
+                    <span>⬅️</span> 이전
+                  </button>
+
+                  <button
+                    onClick={toggleCompletion}
+                    className={`flex-grow max-w-[200px] mx-4 py-3 rounded-xl font-bold text-white transition-all transform hover:scale-105 shadow-lg flex items-center justify-center gap-2 ${isCompleted ? 'bg-emerald-500 hover:bg-emerald-600 shadow-emerald-500/30' : 'bg-indigo-600 hover:bg-indigo-700 shadow-indigo-600/30'
                       }`}
                   >
-                    <span className="text-sm font-semibold truncate pr-2">
-                      {s.id}. {s.title}
-                    </span>
-                    <span className={`text-lg transition-opacity ${isActive ? 'opacity-100' : 'opacity-50 group-hover:opacity-100'}`}>
-                      {isItemCompleted ? '✅' : '⏳'}
-                    </span>
+                    {isCompleted ? '✅ 완료 취소' : '🎉 완료 표시'}
                   </button>
-                );
-              })}
-            </nav>
-          </div>
-        </aside>
 
-        <section className="w-full lg:w-2/3">
-          <div className="bg-white rounded-2xl shadow-md border border-slate-200 p-6 md:p-10 min-h-[600px] flex flex-col relative h-full">
-            <div className="mb-6 pb-6 border-b border-slate-100">
-              <h2 className="text-xl font-bold text-slate-800 mb-2">학습 영역에 오신 것을 환영합니다.</h2>
-              <p className="text-slate-600 leading-relaxed">
-                이 공간은 <span className="font-semibold text-indigo-600">선택된 단계의 핵심 설명과 실행해야 할 명령어</span>를 보여줍니다.
-                좌측 메뉴에서 단계를 선택하여 내용을 확인하고, 검은색 터미널 박스 안의 코드를 복사하여 여러분의 컴퓨터에 적용해 보세요.
-                완료 후 '완료 표시' 버튼을 누르면 전체 진행률이 업데이트되어 성취감을 느낄 수 있습니다.
-              </p>
-            </div>
-
-            <div key={step.id} className="animate-fade-in flex-grow flex flex-col">
-              <div className="flex items-center justify-between mb-2">
-                <span className="text-sm font-bold text-indigo-500 tracking-wider uppercase">Step {step.id}</span>
-              </div>
-              <h3 className="text-2xl font-extrabold text-slate-900 mb-4">{step.title}</h3>
-              <p
-                className="text-slate-600 mb-8 text-lg bg-indigo-50/50 p-4 rounded-lg border-l-4 border-indigo-400"
-                dangerouslySetInnerHTML={{ __html: step.desc }}
-              />
-
-              <h4 className="text-lg font-bold text-slate-800 mb-4 flex items-center gap-2">🎯 해야 할 일</h4>
-              <ul className="mb-6 flex-grow space-y-3">
-                {step.tasks.map((task, idx) => (
-                  <li key={idx} className="flex items-start gap-3">
-                    <span className="flex-shrink-0 w-6 h-6 rounded-full bg-indigo-100 text-indigo-700 flex items-center justify-center text-xs font-bold mt-0.5">
-                      {idx + 1}
-                    </span>
-                    <span className="text-slate-700" dangerouslySetInnerHTML={{ __html: task }} />
-                  </li>
-                ))}
-              </ul>
-
-              {step.code && (
-                <div className="mt-8 bg-[#1e1e1e] rounded-xl overflow-hidden shadow-inner border border-slate-700">
-                  <div className="bg-[#2d2d2d] px-4 py-2 flex items-center justify-between border-b border-slate-600">
-                    <div className="flex gap-2">
-                      <div className="w-3 h-3 rounded-full bg-red-500"></div>
-                      <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
-                      <div className="w-3 h-3 rounded-full bg-green-500"></div>
-                    </div>
-                    <span className="text-xs text-slate-400 font-mono">Terminal (WSL)</span>
-                    <button
-                      onClick={() => copyCode(step.code as string)}
-                      className={`text-xs text-white px-3 py-1 rounded transition-colors flex items-center gap-1 ${copiedText ? 'bg-emerald-600' : 'bg-slate-700 hover:bg-slate-600'}`}
-                    >
-                      {copiedText ? `✨ 복사됨!` : `📋 복사하기`}
-                    </button>
-                  </div>
-                  <div className="p-4 overflow-x-auto text-sm font-mono text-green-400 whitespace-pre leading-relaxed custom-scrollbar-terminal">
-                    {step.code}
-                  </div>
+                  <button
+                    onClick={() => navigate(1)}
+                    className={`text-slate-500 hover:text-indigo-600 font-medium px-4 py-2 flex items-center gap-1 ${step.id === 10 ? 'invisible' : ''}`}
+                  >
+                    다음 <span>➡️</span>
+                  </button>
                 </div>
-              )}
 
-              <div className="mt-auto pt-8 flex justify-between items-center border-t border-slate-100">
-                <button
-                  onClick={() => navigate(-1)}
-                  className={`text-slate-500 hover:text-indigo-600 font-medium px-4 py-2 flex items-center gap-1 ${step.id === 1 ? 'invisible' : ''}`}
-                >
-                  <span>⬅️</span> 이전
-                </button>
-
-                <button
-                  onClick={toggleCompletion}
-                  className={`flex-grow max-w-[200px] mx-4 py-3 rounded-xl font-bold text-white transition-all transform hover:scale-105 shadow-lg flex items-center justify-center gap-2 ${isCompleted ? 'bg-emerald-500 hover:bg-emerald-600 shadow-emerald-500/30' : 'bg-indigo-600 hover:bg-indigo-700 shadow-indigo-600/30'
-                    }`}
-                >
-                  {isCompleted ? '✅ 완료 취소' : '🎉 완료 표시'}
-                </button>
-
-                <button
-                  onClick={() => navigate(1)}
-                  className={`text-slate-500 hover:text-indigo-600 font-medium px-4 py-2 flex items-center gap-1 ${step.id === 10 ? 'invisible' : ''}`}
-                >
-                  다음 <span>➡️</span>
-                </button>
-              </div>
-
-              <div className="mt-4 text-center">
-                <p className="text-xs text-slate-400">💡 도움이 필요하면 AI 에이전트에게 화면 스크린샷이나 에러를 복사해 물어보세요!</p>
+                <div className="mt-4 text-center">
+                  <p className="text-xs text-slate-400">💡 도움이 필요하면 AI 에이전트에게 화면 스크린샷이나 에러를 복사해 물어보세요!</p>
+                </div>
               </div>
             </div>
-          </div>
-        </section>
-      </main>
+          </section>
+        </main>
+      </div>
 
-      <footer className="bg-slate-800 py-6 text-center text-slate-400 text-sm mt-auto">
+      <footer className="bg-slate-800 py-5 text-center text-slate-400 text-sm shrink-0 z-10 relative">
         <p>코딩을 한 번도 해보지 않으셨어도 괜찮습니다. AI와 함께라면 할 수 있습니다! ✨</p>
       </footer>
     </div>
