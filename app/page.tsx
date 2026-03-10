@@ -6,142 +6,218 @@ const guideData = [
   {
     id: 1,
     title: "윈도우 환경에서 WSL 설치하기",
-    desc: "WSL(Windows Subsystem for Linux)은 윈도우 안에서 개발자들에게 필수적인 '리눅스' 환경을 쓸 수 있게 해주는 마법 같은 도구입니다.<br><img src='/cmd.png' alt='Command Prompt' class='mt-4 w-full max-w-[500px] rounded-lg shadow-md border border-indigo-100'>",
+    desc: "WSL(Windows Subsystem for Linux)은 윈도우 안에서 개발자들에게 필수적인 '리눅스' 환경을 쓸 수 있게 해주는 마법 같은 도구입니다. \
+           <br><img src='/cmd.png' alt='Command Prompt' class='mt-4 w-full max-w-[500px] rounded-lg shadow-md border border-indigo-100'> \
+           <br> 리눅스나 WSL(Windows Subsystem for Linux) 환경에서 바이브코딩(AI 기반의 대화형 코딩)을 하는 주된 이유는 현대적인 개발 도구(Cursor, Docker, Node.js 등)와의 완벽한 호환성, 네이티브에 가까운 빠른 성능, 그리고 실제 서비스 운영 환경(Linux 서버)과의 일치성 때문입니다. WSL은 윈도우의 편리함과 리눅스의 강력함을 동시에 누릴 수 있는 최적의 환경입니다.",
     tasks: [
       "윈도우 시작 버튼을 우클릭 하여 누르고 <strong>powershell</strong>을 검색합니다.",
       "'Windows PowerShell'을 우클릭하여 <strong>[관리자 권한으로 실행]</strong>을 클릭합니다.<br><div class='mt-3 inline-flex flex-col min-w-[200px] rounded-lg bg-[#e3e3e3] shadow-md border border-[#cbcece] p-1 text-left font-sans select-none'><div class='px-4 py-2 text-[14px] text-[#1a1a1a] hover:bg-[#d1d1d1] transition-colors rounded-md mb-0.5 cursor-default'>터미널</div><div class='px-4 py-2 text-[14px] text-[#1a1a1a] bg-[#d1d1d1] rounded-md cursor-default'>터미널(관리자)</div></div>",
-      "아래 명령어를(wsl --install) 복사하여 붙여넣고 Enter를 누릅니다.",
+      "아래 명령어를(wsl --install) 복사하여 붙여넣고 Enter를 누릅니다.<br><a href='https://learn.microsoft.com/ko-kr/windows/wsl/install' target='_blank' class='text-indigo-600 underline mt-2 inline-block'>WSL 설치 오류 시 참조 페이지</a>",
       "설치가 완료되면 컴퓨터를 재부팅합니다.",
-      "재부팅 후 검색창에서 ubuntu를 검색하여 까만 창이 뜨면, 사용자 이름(영어)과 비밀번호를 설정합니다.",
+      "재부팅 후 검색창에서 ubuntu를 검색하여 실행 후 터미널(까만 창)이 뜨면, 사용자 이름(영어)과 비밀번호(반드시 기억)를 설정합니다.",
       "만약, 리눅스가 설치되지 않았다면, 검색창에서 Microsoft Store를 검색 후 Ubuntu 20.04.6 LTS(최신 버전 선택)를 설치합니다.<br><div class='mt-3 flex flex-col max-w-sm rounded-xl overflow-hidden shadow-sm bg-gradient-to-b from-[#fdeee9] to-[#faf3f1] border border-[#f3e1db] p-4 text-left font-sans select-none'><div class='flex gap-4'><div class='w-20 h-20 bg-[#e95420] rounded-xl flex flex-col items-center justify-center p-1.5 shadow-sm shrink-0 relative overflow-hidden'><div class='bg-white rounded-full p-2.5 w-12 h-12 flex items-center justify-center mb-1'><svg class='w-8 h-8 text-[#e95420]' viewBox='0 0 24 24' fill='currentColor'><path d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-2-5.5c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm4 0c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2z'/><circle cx='12' cy='8.5' r='1.5'/><circle cx='8.5' cy='14.5' r='1.5'/><circle cx='15.5' cy='14.5' r='1.5'/><path d='M10.5 10c-.55 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1zm3 0c-.55 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1z'/></svg></div><span class='text-white text-[9px] font-bold tracking-wide mt-auto'>20.04 LTS</span></div><div class='flex flex-col justify-center'><h4 class='text-[22px] font-semibold text-[#1a1a1a] leading-tight mb-1'>Ubuntu 20.04.6 LTS</h4><a href='#' class='text-sm text-[#0067c0] hover:underline mb-1'>Canonical Group Limited</a><div class='flex items-center text-[13px] text-[#4d4d4d]'><span class='font-medium text-[#1a1a1a] mr-1'>4.4</span><svg class='w-3.5 h-3.5 text-[#4d4d4d] mr-2' fill='currentColor' viewBox='0 0 20 20'><path d='M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z'/></svg><span>20개의 등급</span><span class='mx-2 text-[#cccccc]'>|</span><a href='#' class='text-[#0067c0] hover:underline'>개발자 도구</a></div></div></div><p class='mt-4 text-[13px] text-[#333333] leading-relaxed'>Install a complete Ubuntu terminal environment in minutes with Windows Subsystem for Linux (WSL)....</p><div class='mt-4 flex items-center gap-4'><button class='bg-[#005ea6] hover:bg-[#005494] text-white px-8 py-2.5 rounded text-sm font-medium transition-colors cursor-default'>다운로드</button><button class='text-[#1a1a1a] hover:bg-[#0000000a] p-1.5 rounded transition-colors'><svg class='w-5 h-5' fill='none' stroke='currentColor' viewBox='0 0 24 24'><path stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12'/></svg></button></div><div class='mt-4 flex items-center gap-2'><div class='border border-[#4d4d4d] rounded p-1 flex items-center justify-center bg-white w-10 h-10'><span class='text-[18px] font-black tracking-tighter'>3+</span><span class='absolute text-[5px] font-bold mt-[-24px] uppercase tracking-widest'>IARC</span></div><span class='text-[13px] text-[#333333]'>3+</span></div></div>",
-      "설치가 완료 되면, 검색에서 ubuntu를 입력하여 설치된 리눅스를 터미널을 접속 합니다.<br><div class='mt-3 inline-flex items-center gap-3 bg-[#f2e7de] p-3 rounded-xl shadow-sm border border-[#e1d3c8] select-none'><svg class='w-7 h-7 text-[#0078d4] shrink-0' viewBox='0 0 88 88' fill='currentColor'><path d='M0 12.402L37.332 7v33H0v-27.598zM41.332 6.426L88 0v40H41.332V6.426zM0 44h37.332v33L0 71.598V44zm41.332 0H88v40L41.332 81.574V44z'/></svg><div class='flex items-center bg-white rounded-full px-4 py-2 border border-slate-200 shadow-inner w-[240px]'><svg class='w-5 h-5 text-blue-500 mr-3' fill='none' stroke='currentColor' viewBox='0 0 24 24'><path stroke-linecap='round' stroke-linejoin='round' stroke-width='2.5' d='M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z'/></svg><span class='text-[17px] text-slate-800 font-sans tracking-wide'>ubuntu<span class='inline-block w-[1.5px] h-[18px] bg-slate-800 ml-[1px] -mb-0.5 animate-pulse'></span></span></div></div>",
-      "접속된 터미널에서 위 3,4,5번 항목을 진행합니다.",
+      "설치가 완료 되면, 검색에서 ubuntu를 입력하여 설치된 리눅스를 터미널로 접속 합니다.<br><div class='mt-3 inline-flex items-center gap-3 bg-[#f2e7de] p-3 rounded-xl shadow-sm border border-[#e1d3c8] select-none'><svg class='w-7 h-7 text-[#0078d4] shrink-0' viewBox='0 0 88 88' fill='currentColor'><path d='M0 12.402L37.332 7v33H0v-27.598zM41.332 6.426L88 0v40H41.332V6.426zM0 44h37.332v33L0 71.598V44zm41.332 0H88v40L41.332 81.574V44z'/></svg><div class='flex items-center bg-white rounded-full px-4 py-2 border border-slate-200 shadow-inner w-[240px]'><svg class='w-5 h-5 text-blue-500 mr-3' fill='none' stroke='currentColor' viewBox='0 0 24 24'><path stroke-linecap='round' stroke-linejoin='round' stroke-width='2.5' d='M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z'/></svg><span class='text-[17px] text-slate-800 font-sans tracking-wide'>ubuntu<span class='inline-block w-[1.5px] h-[18px] bg-slate-800 ml-[1px] -mb-0.5 animate-pulse'></span></span></div></div>",
+      "접속된 터미널에서 위 5번 항목을 진행합니다.",
 
     ],
     code: "wsl --install",
-    isCodeMultiple: false
+    isCodeMultiple: false,
+    codePosition: 2
   },
   {
     id: 2,
-    title: "Google Antigravity 설치 및 연동",
-    desc: "Google Antigravity는 우리가 AI와 대화하며 코드를 작성할 '스마트 편집기'입니다.<br><img src='/antigravity.png' alt='Google Antigravity Editor' class='mt-4 w-full max-w-[700px] rounded-lg shadow-md border border-indigo-100'>",
+    title: "Google Antigravity 설치 및 WSL 연결",
+    desc: "Google Antigravity는 우리가 AI와 대화하며 코드를 작성할 '스마트 편집기'입니다.<br><img src='/antigravity.png' alt='Google Antigravity Editor' class='mt-4 w-full max-w-[700px] rounded-lg shadow-md border border-indigo-100'> \
+          <br> Antigravity는 Cusor와 같이 VS Code 오픈소스 기반의 구글 IDE입니다. <br> Antigravity는 여러분의 윈도우 환경에 설치되며, 1단계에서 설치한 WSL은 윈도우 내의 가상머신에서 실행되는 격리된 환경입니다. \
+          <br> 따라서, 본 단계에서는 윈도우에 설치된 Antigravity를 격리된 환경에 있는 WSL로 연결하여, 윈도우에서 WSL(리눅스) 환경의 폴더에 접근해서 개발할 수 있도록 합니다. <br><a href='https://codelabs.developers.google.com/getting-started-google-antigravity?hl=ko#0' target='_blank' class='text-indigo-600 underline mt-2 inline-block'>Antigravity 매뉴얼</a>",
     tasks: [
       "<a href='https://antigravity.google/download' target='_blank' class='text-indigo-600 underline'>Google Antigravity 공식 홈페이지</a>에서 윈도우용(x64)을 설치합니다.<br><div class='mt-3 inline-flex flex-col border border-slate-200 rounded-lg overflow-hidden shadow-sm bg-white hover:bg-slate-50 transition-colors'><div class='flex items-center gap-3 px-4 py-3 border-b border-slate-100'><svg class='w-5 h-5 text-slate-800' fill='currentColor' viewBox='0 0 24 24'><path d='M0 3.449L9.75 2.1v9.451H0m10.949-9.602L24 0v11.4H10.949M0 12.6h9.75v9.451L0 20.699M10.949 12.6H24V24l-13.051-1.801'/></svg><span class='text-base font-medium text-slate-800'>Windows</span></div><div class='flex items-center gap-2 px-4 py-2.5 text-slate-600'><svg class='w-4 h-4' fill='none' stroke='currentColor' viewBox='0 0 24 24'><path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4'/></svg><span class='text-sm'>Download for x64</span></div></div>",
-      "Antigravity를 실행합니다.",
+      "Antigravity 설치는 기본 선택된 항목으로 'Next'를 클릭하여 설치를 진행합니다.",
+      "설치가 완료되면 Antigravity를 실행합니다.",
       "키보드에서 <strong>Ctrl + Shift + P</strong>를 누릅니다.",
       "검색창에 <strong>WSL</strong>을 입력하고 <strong>[WSL: Connect to WSL]</strong>을 찾아 클릭합니다.<br><div class='mt-3 w-full max-w-sm rounded-[4px] overflow-hidden bg-[#252526] shadow-sm border border-[#454545] text-left'><div class='px-3 py-1.5 flex items-center bg-[#252526] border-b border-[#454545]'><span class='text-[#cccccc] mr-1.5 font-mono'>&gt;</span><span class='text-white text-[13px]'>wsl</span><span class='inline-block w-[1px] h-4 bg-slate-200 animate-pulse ml-[1px] -mb-0.5'></span></div><div class='px-3 py-1.5 flex items-center bg-[#04395e]'><span class='text-white text-[13px]'><span class='text-white'>Remote-</span><span class='text-[#51b2ff]'>WSL</span>: Connect to WSL</span></div></div>",
-      "왼쪽 하단에 'WSL: Ubuntu'가 표시되면 성공입니다. 이제 [폴더 열기]로 리눅스 내부를 바로 볼 수 있습니다.<br><img src='/bottomleft.png' alt='Gemini CLI Terminal' class='mt-3 w-full max-w-[250px] rounded-lg shadow-md border border-slate-200'>"
+      "왼쪽 하단에 'WSL: Ubuntu'가 표시되면 성공입니다. 이제 [폴더 열기]로 리눅스 내부를 바로 볼 수 있습니다.<br><img src='/bottomleft.png' alt='Gemini CLI Terminal' class='mt-3 w-full max-w-[250px] rounded-lg shadow-md border border-slate-200'>",
+      "이후에 나오는 9단계에서 Antigravity를 이용해 앱을 생성하고 배포하는 과정을 진행하게 됩니다."
     ],
     code: null
   },
   {
     id: 3,
-    title: "WSL에서 Gemini CLI 설치하기",
-    desc: "Gemini CLI는 까만 터미널 창에서도 AI(Gemini)에게 명령을 내릴 수 있게 해주는 도구입니다.<br><img src='/gemini.png' alt='Gemini CLI Terminal' class='mt-4 w-full max-w-[700px] rounded-lg shadow-md border border-indigo-100'>",
+    title: "WSL에서 Gemini CLI 설치 및 기본 설정",
+    desc: "Gemini CLI는 까만 터미널 창에서도 AI(Gemini)에게 명령을 내릴 수 있게 해주는 도구입니다.<br><img src='/gemini.png' alt='Gemini CLI Terminal' class='mt-4 w-full max-w-[700px] rounded-lg shadow-md border border-indigo-100'>\
+          <br>Antigravity외에 Gemini CLI를 설치하는 이유는 bash쉘(리눅스 프롬프트 환경)에서 직접 AI에게 명령을 내릴 수 있기 때문입니다. Antigravity에서도 bash쉘을 사용할 수 있지만, Gemini CLI를 사용하면 더 강력한 기능을 활용할 수 있기 때문입니다.\
+          <br>설치한 Gemini를 처음 실행하여 초기 설정을 진행하고 내 구글 계정과 연결합니다.",
     tasks: [
       "Antigravity 상단 메뉴에서 <strong>[터미널] -> [새 터미널]</strong>을 엽니다.<br><img src='/apt.png' alt='New Terminal in Antigravity' class='mt-4 w-full max-w-[500px] rounded-lg shadow-md border border-indigo-100'>",
-      "아래의 기본 도구 설치 명령어를 실행합니다. (비밀번호 요구 시 입력)",
-      "설치가 끝나면 Gemini CLI를 설치하는 명령어를 이어서 실행합니다."
-    ],
-    code: "sudo apt update\nsudo apt install -y curl nodejs npm\n\nsudo npm install -g @google/gemini-cli",
-    isCodeMultiple: true
-  },
-  {
-    id: 4,
-    title: "Gemini CLI 최초 구동 및 기본 설정",
-    desc: "설치한 Gemini를 처음 실행하여 초기 설정을 진행하고 내 구글 계정과 연결합니다.",
-    tasks: [
-      "터미널 창에 <code>gemini</code> 명령어를 입력합니다.<br><img src='/geminiauth.png' alt='Gemini Auth' class='mt-4 w-full max-w-[500px] rounded-lg shadow-md border border-indigo-100'>",
+      "아래의 기본 도구 설치 명령어를 한 줄씩 복사하여 붙여넣기 후 Enter를 쳐서 실행합니다. (비밀번호 요구 시 입력)",
+      "터미널 창에 <code>gemini</code> 명령어를 입력하면 다음과 같은 화면이 나옵니다.<br><img src='/geminiauth.png' alt='Gemini Auth' class='mt-4 w-full max-w-[500px] rounded-lg shadow-md border border-indigo-100'>",
       "방향키를 이용해 <strong>[Login with Google(구글 계정 인증)]</strong>을 선택하고 Enter를 누릅니다.",
       "브라우저 인증 항목 진행을 위해 'Yes'에서 Enter를 칩니다.<br><img src='/geminiauth2.png' alt='Gemini Auth 2' class='mt-4 w-full max-w-[300px] rounded-lg shadow-md border border-indigo-100'>",
       "브라우저가 열리면 구글 로그인 후 <strong>[허용]</strong>을 누릅니다.<br><img src='/login.png' alt='Google Login' class='mt-4 w-full max-w-[500px] rounded-lg shadow-md border border-indigo-100'>",
-      "터미널에 성공 메시지가 뜨면 완료입니다! r key 입력 또는 Ctrl + c 로 종료 후 'gemini' 재 실행하면 됩니다.<br><img src='/authend.png' alt='Authentication Success' class='mt-4 w-full max-w-[700px] rounded-lg shadow-md border border-indigo-100'>"
+      "터미널에 성공 메시지가 뜨면 완료입니다! r key 입력 또는 Ctrl + c 로 종료 후 'gemini'를 재 실행하면 됩니다.<br><img src='/authend.png' alt='Authentication Success' class='mt-4 w-full max-w-[700px] rounded-lg shadow-md border border-indigo-100'>"
     ],
-    code: "gemini",
-    isCodeMultiple: false
+    code: "sudo apt update\nsudo apt install -y curl nodejs npm\n\nsudo npm install -g @google/gemini-cli\n\ngemini",
+    isCodeMultiple: true,
+    codePosition: 1
   },
   {
-    id: 5,
-    title: "Github 가입 절차",
-    desc: "Github(깃허브)는 우리가 만든 앱의 코드를 안전하게 보관해 주는 전 세계 개발자들의 클라우드 저장소입니다.",
+    id: 4,
+    title: "Github 가입 및 저장소 생성 절차",
+    desc: "Github(깃허브)는 우리가 만든 앱의 코드를 안전하게 보관해 주는 전 세계 개발자들의 클라우드 저장소입니다.<br><img src='/git.png' alt='GitHub Logo' class='mt-4 w-full max-w-[600px] rounded-lg shadow-md border border-indigo-100'>\
+          <br>Github는 여러분이 개발한 앱의 소스코드를 저장할 수 있으며, 각 버전별로 관리하여 백업할 수 있습니다. 또한, 다른 개발자들과 협업할 수 있는 기능을 제공합니다. \
+          <br>특히, Vercel과 같은 배포 서비스는 Github와 연동하여 자동으로 앱을 배포하는 기능을 제공합니다. 여러분이 앱을 수정 후 Gemini CLI에게 '변경된 부분 Github에 푸시/커밋 해줘(혹은 업데이트 해줘)'라고 명령하면 Gemini CLI는 즉시 수정된 부분을 Github에 업데이트하게 되고, \
+          Github과 연동된 Vercel은 몇 분만에 여러분의 수정된 앱을 자동으로 배포하게 됩니다.",
     tasks: [
       "<a href='https://github.com' target='_blank' class='text-indigo-600 underline'>github.com</a> 에 접속합니다.",
       "우측 상단의 <strong>[Sign up]</strong>을 클릭합니다.",
       "이메일, 비밀번호, 닉네임을 차례로 입력합니다.",
-      "이메일로 온 인증 코드 6자리를 입력하여 가입을 완료합니다."
+      "이메일로 온 인증 코드 6자리를 입력하여 가입을 완료합니다.",
+      "가입 후 자신의 <strong>Repositories</strong>에서 <strong>New</strong>를 눌러 새로운 저장소를 만듭니다.<br><img src='/git6.png' alt='New Repository' class='mt-4 w-full max-w-[100px] rounded-lg shadow-md border border-indigo-100'>",
+      "<strong>Repository Name</strong>, <strong>Visibility</strong>를 설정한 뒤 <strong>Create repository</strong>를 클릭하고 저장소를 만듭니다.\
+      <br>Visibility 항목이 Public이면 프로젝트를 공개하여 모든 사람들이 소스코드를 이용할 수 있으며, Private로 설정하면 비밀저장소로 생성됩니다.<br><img src='/git7.png' alt='Create Repository Settings' class='mt-4 w-full max-w-[600px] rounded-lg shadow-md border border-indigo-100'>",
+      "방금 만든 저장소는 6단계의 Vercel 가입 후 8단계의 '앱 배포'에서 연결하면 자동으로 자신의 앱이 배포되어 인터넷에 연결된 모든 사람들이 접근할 수 있게 됩니다."
+    ],
+    code: null
+  },
+  {
+    id: 5,
+    title: "Supabase 가입 절차",
+    desc: "Supabase(수파베이스)는 우리 앱의 데이터를 저장할 '데이터베이스(DB)'를 클라우드에 매우 쉽게 만들어주는 서비스입니다.<br><img src='/supa.png' alt='Supabase Logo' class='mt-4 w-full max-w-[600px] rounded-lg shadow-md border border-indigo-100'>",
+    tasks: [
+      "<a href='https://supabase.com' target='_blank' class='text-indigo-600 underline'>supabase.com</a> 에 접속합니다.",
+      "우측 상단의 <strong>[Start your project]</strong> 버튼을 클릭합니다.<br><img src='/supa1.png' alt='Supabase Start' class='mt-4 w-full max-w-[200px] rounded-lg shadow-md border border-indigo-100'>",
+      "<strong>[Continue with GitHub]</strong>를 클릭하여 깃허브 계정으로 가입합니다.<br><img src='/supa2.png' alt='Supabase GitHub Login' class='mt-4 w-full max-w-[300px] rounded-lg shadow-md border border-indigo-100'>",
+      "<strong>[New organization]</strong>을 클릭하고 조직이름/유형(개인)/플랜(무료)를 선택 후 조직을 생성합니다.<br><img src='/supa5.png' alt='Supabase Option' class='mt-4 w-full max-w-[150px] rounded-lg shadow-md border border-indigo-100'><img src='/supa3.png' alt='Supabase New Organization' class='mt-4 w-full max-w-[500px] rounded-lg shadow-md border border-indigo-100'>",
+      "생성한 Organization에 들어간 다음 <strong>[New Project]</strong>를 클릭하고 이름과 비밀번호를 설정하여 프로젝트를 생성합니다.<br><img src='/supa6.png' alt='Supabase Option' class='mt-4 w-full max-w-[120px] rounded-lg shadow-md border border-indigo-100'><img src='/supa4.png' alt='Supabase New Project' class='mt-4 w-full max-w-[600px] rounded-lg shadow-md border border-indigo-100'>",
+      "이 단계 이후 향후 데이터베이스 연동이 필요할 때 만들어둔 프로젝트에 연결하면 됩니다.(AI에게 요청해서 처리할 것입니다.)"
     ],
     code: null
   },
   {
     id: 6,
-    title: "Supabase 가입 절차",
-    desc: "Supabase(수파베이스)는 우리 앱의 데이터를 저장할 '데이터베이스(DB)'를 매우 쉽게 만들어주는 서비스입니다.",
+    title: "Vercel 가입 절차",
+    desc: "Vercel(버셀)은 우리가 만든 앱을 전 세계 사람들이 접속할 수 있도록 인터넷에 띄워주는 배포 서비스입니다. 서버를 소유하지 않아도 Vercel에서 제공해주는 무료 프랜 한도내에서 자신만의 앱서버를 클라우드에 구축할 수 있습니다.<br><img src='/ver1.png' alt='Vercel Homepage' class='mt-4 w-full max-w-[500px] rounded-lg shadow-md border border-indigo-100'>",
     tasks: [
-      "<a href='https://supabase.com' target='_blank' class='text-indigo-600 underline'>supabase.com</a> 에 접속합니다.",
-      "우측 상단의 <strong>[Start your project]</strong> 버튼을 클릭합니다.<br><img src='/supa1.png' alt='Supabase Start' class='mt-4 w-full max-w-[200px] rounded-lg shadow-md border border-indigo-100'>",
-      "<strong>[Continue with GitHub]</strong>를 클릭하여 깃허브 계정으로 가입합니다.<br><img src='/supa2.png' alt='Supabase GitHub Login' class='mt-4 w-full max-w-[300px] rounded-lg shadow-md border border-indigo-100'>",
-      "<strong>[New organization]</strong>을 클릭하고 조직이름/유형(개인)/플랜(무료)를 선택 후 조직을 생성합니다.<br><img src='/supa3.png' alt='Supabase New Organization' class='mt-4 w-full max-w-[500px] rounded-lg shadow-md border border-indigo-100'>",
-      "조직을 눌러 들어간 후 <strong>[New Project]</strong>를 클릭하고 이름과 비밀번호를 설정하여 프로젝트를 생성합니다.<br><img src='/supa4.png' alt='Supabase New Project' class='mt-4 w-full max-w-[600px] rounded-lg shadow-md border border-indigo-100'>",
-      "이 단계 이후 향후 데이터베이스 연동이 필요할 때 만들어둔 프로젝트에 연결하면 됩니다.(AI에게 요청해서 처리할 것이므로 이름과 비밀번호만 입력하면 됩니다.)"
+      "<a href='https://vercel.com' target='_blank' class='text-indigo-700 underline'>vercel.com</a> 에 접속합니다.",
+      "<strong>[Sign Up]</strong>을 클릭하고, Hobby를 선택 후 사용할 아이디를 입력 하고 <strong>Continue</strong>를 클릭합니다.<br><img src='/ver2.png' alt='Vercel Sign Up' class='mt-4 w-full max-w-[400px] rounded-lg shadow-md border border-indigo-100'>",
+      "<strong>[Continue with GitHub]</strong>을 선택하여 로그인/연동을 진행합니다.<br>Google을 사용해도 되지만 따로 Github 연동을 해줘야 하기 때문에 가능하다면 Github을 이용해서 가입하는게 좋습니다. 우리는 이미 4단계에서 Github에 가입했으므로 가입 정보를 이용해 Vercel에 가입합니다.<br><img src='/ver3.png' alt='Vercel GitHub Login' class='mt-4 w-full max-w-[400px] rounded-lg shadow-md border border-indigo-100'>",
+      "이후 과정은 바이브 코딩으로 프로젝트를 만든 후 Github에 소스코드를 올린 후 Vercel에서 Github의 저장소와 연결하도록 합니다.<br>Vercel에 Github저장소를 연결하는 것만으로도 자동으로 배포가 완료됩니다."
     ],
     code: null
   },
   {
     id: 7,
-    title: "Vercel 가입 절차",
-    desc: "Vercel(버셀)은 우리가 만든 앱을 전 세계 사람들이 접속할 수 있도록 인터넷에 띄워주는 배포 서비스입니다.",
+    title: "WSL에 Git 설치 및 Github 계정 연결",
+    desc: "코드를 Github에 보관하기 위해 Git을 설치하고 연결합니다.<br>Git과 Github는 다릅니다. Git은 소스코드 형상관리 도구이며 이 도구를 사용해 소스코드를 관리하고, 로컬(자신의 컴퓨터) 저장소를 만들어 소스코드를 로컬 저장소에서 관리하게 해줍니다.<br>Github은 이런 Git이란 도구에서 생성한 로컬 저장소를 클라우드에 연결하여 온라인상에 올려 관리할수 있게 해주는 플랫폼입니다. 자신의 컴퓨터뿐 아니라 원격지 어디든 온라인으로 소스코드를 관리할수 있게 해줍니다. 현재는 다양한 기능과 플랫폼들이(예.Vercel등) Github과 연결되어 소프트웨어 개발을 편리하게 도와줍니다.<br><a href='https://git-scm.com/book/ko/v2' target='_blank' class='text-indigo-600 underline mt-2 inline-block'>Git 공식문서</a>",
     tasks: [
-      "<a href='https://vercel.com' target='_blank' class='text-indigo-700 underline'>vercel.com</a> 에 접속합니다.<br><img src='/ver1.png' alt='Vercel Homepage' class='mt-4 w-full max-w-[400px] rounded-lg shadow-md border border-indigo-100'>",
-      "<strong>[Sign Up]</strong>을 클릭하고, Hobby를 선택 후 사용할 아이디를 입력 후 <strong>Continue</strong>를 클릭합니다.<br><img src='/ver2.png' alt='Vercel Sign Up' class='mt-4 w-full max-w-[400px] rounded-lg shadow-md border border-indigo-100'>",
-      "여기서도 <strong>[Continue with GitHub]</strong>를 선택하여 로그인/연동을 진행합니다.<br><img src='/ver3.png' alt='Vercel GitHub Login' class='mt-4 w-full max-w-[400px] rounded-lg shadow-md border border-indigo-100'>",
-      "이후 과정은 바이브 코딩으로 프로젝트를 만든 후 Github에 소스코드를 올린 후 Vercel과 연동하도록 합니다."
-    ],
-    code: null
-  },
-  {
-    id: 8,
-    title: "Git 설치 및 Github 계정 연동",
-    desc: "코드를 깃허브에 보관하기 위해 Git을 설치하고 연결합니다.",
-    tasks: [
-      "Antigravity의 터미널에서 아래 명령어 박스의 1번 블록을 실행하여 Git을 설치하고 본인의 정보로 설정합니다. 아래 항목에서 한줄 씩 복사 붙여넣기 하여 실행해 나갑니다.",
-      "2번 블록을 터미널에 복사 붙여넣기 실행하여 Github CLI를 설치합니다.",
+      "Antigravity 터미널에서 Git을 설치하고 본인 정보를 설정합니다. 아래 항목에서 한 줄씩 복사 붙여넣기 하여 실행해 나갑니다.",
+      "Github CLI를 설치합니다. 아래 항목 전체를(#주석제외) 한번에 복사 붙여넣기 하여 실행해 나갑니다. 마우스 드래그를 이용해 복사/붙여넣기 하신 후 한번에 실행해야 합니다.",
       "마지막으로 <strong><code>gh auth login</code></strong> 을 입력하고 지시에 따라 브라우저 연동을 완료합니다. (8자리 코드)",
       "인증 절차는 각 항목을 그림과 같이 Github.com / HTTPS / Login whth a web browser를 선택합니다.<br><img src='/git4.png' alt='Git Auth Step 2' class='mt-4 w-full max-w-[600px] rounded-lg shadow-md border border-indigo-100'>",
       "링크를 Ctrl + Click을 하여 브라우저에서 인증을 진행합니다. 이때, 위 그림에서 표시된 8자리 코드를 입력하여 인증을 마무리 한 뒤 터미널에서 Enter를 눌러 이후 단계를 진행합니다.<br><img src='/git5.png' alt='Git Auth Step 3' class='mt-4 w-full max-w-[600px] rounded-lg shadow-md border border-indigo-100'>",
-      "Github는 프로젝트 생성 후 연결하여 소스코드 저장소로 사용하게 됩니다. 저장된 Github의 소스코드는 Vercel에 간편하게 연결되어 인터넷에 배포됩니다."
+      "Github는 프로젝트 생성 후 연결하여 소스코드 저장소로 사용하게 됩니다. 저장된 Github의 소스코드는 Vercel에 간편하게 연결되어 인터넷에 배포됩니다.",
+      "Github의 사용과 관리는 3단계에서 설치한 Gemini CLI를 이용해 AI 에이전트에게 시키도록 할 것입니다. 그러나 시간이 허락된다면 Git을 직접 사용하고 이해할 수 있도록 기본적인 동작원리를 살펴 보시길 바랍니다."
     ],
-    code: "# 1번: Git 설치 및 설정 (이름/이메일 변경 필수)\nsudo apt install git\ngit config --global user.name \"내 깃허브 닉네임\"\ngit config --global user.email \"내 깃허브 이메일\"\n\n# 2번: Github CLI 설치\ncurl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | sudo dd of=/usr/share/keyrings/githubcli-archive-keyring.gpg\necho \"deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main\" | sudo tee /etc/apt/sources.list.d/github-cli.list > /dev/null\nsudo apt update && sudo apt install gh\n\n# 3번: 로그인 명령어\ngh auth login",
+    code: null,
+    codes: [
+      {
+        code: "# Git 설치 및 설정 (이름/이메일 변경 필수)\nsudo apt install git\ngit config --global user.name \"내 깃허브 닉네임\"\ngit config --global user.email \"내 깃허브 이메일\"",
+        position: 0
+      },
+      {
+        code: "# Github CLI 설치\ncurl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | sudo dd of=/usr/share/keyrings/githubcli-archive-keyring.gpg\necho \"deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main\" | sudo tee /etc/apt/sources.list.d/github-cli.list > /dev/null\nsudo apt update && sudo apt install gh",
+        position: 1
+      },
+      {
+        code: "# 로그인 명령어\ngh auth login",
+        position: 2
+      }
+    ],
+    isCodeMultiple: true
+  },
+  {
+    id: 8,
+    title: "앱 생성 ➔ DB 연동 ➔ 로컬 배포",
+    desc: "바이브 코딩의 시작! AI와 대화하며 앱을 만들고 인터넷에 띄웁니다.<br><br><strong class='text-indigo-700'>\
+    💡 [참고] 자주 쓰는 리눅스 기초 명령어 10가지</strong><div class='mt-3 bg-[#1e1e1e] p-4 rounded-xl shadow-inner border border-slate-700 text-sm font-mono text-green-400 whitespace-pre overflow-x-auto leading-relaxed text-left'># 1. ls: 현재 폴더의 파일 목록 확인\nls -al //자세한 파일목록\n\n# 2. cd: 폴더 이동 (예: cd 폴더명, cd .. 은 상위 폴더로 이동)\ncd ~  // 자신의 home 디렉토리로 이동\n\n# 3. pwd: 현재 작업 중인 절대 경로 확인\npwd\n\n# 4. mkdir: 새로운 폴더(디렉토리) 생성\nmkdir 폴더명\n\n# 5. rm: 파일이나 폴더 삭제 (-rf는 강제 및 하위폴더 포함 삭제)\nrm -rf 폴더명\n\n# 6. cp: 파일이나 폴더 복사\ncp 원본 복사본\n\n# 7. mv: 파일 이동 또는 파일 이름 변경\nmv 옛날이름 새이름\n\n# 8. cat: 파일 내용을 터미널에 간단히 출력\ncat 파일명.txt\n\n# 9. clear: 지저분해진 터미널 화면 깨끗하게 비우기\nclear\n\n# 10. sudo: 최고 관리자(root) 권한으로 명령어 실행 (비밀번호 필요)\nsudo apt update</div>",
+    tasks: [
+      "Antigravity의 터미널에서 다음과 같이 명령어를 차례대로 입력합니다.(처음은 사용자 home(~) 디렉토리입니다.)\
+      <br><참고> 디렉토리 생성과 기본앱 디렉토리 생성등을 모두 AI에게 시킬 수도 있습니다. 다만 기본적인 리눅스 프롬프트의 사용법과 직접 기본앱을 생성해보는 것이 향후 개발 과정에서 유익이 큽니다. 기본적으로 토큰(돈)을 아껴야 하니까요 ;)<br><img src='/vibe1.png' alt='Vibe Coding' class='mt-4 w-full max-w-[800px] rounded-lg shadow-md border border-indigo-100'>",
+      "생성된 프로젝트를 Antigravity로 연결 합니다. 화면을 참조하며 진행하세요.<br><img src='/vibe2.png' alt='Vibe Step 1' class='mt-4 w-full max-w-[300px] rounded-lg shadow-md border border-indigo-100'><img src='/vibe3.png' alt='Vibe Step 2' class='mt-4 w-full max-w-[600px] rounded-lg shadow-md border border-indigo-100'><img src='/vibe4.png' alt='Vibe Step 3' class='mt-4 w-full max-w-[400px] rounded-lg shadow-md border border-indigo-100'><img src='/vibe5.png' alt='Vibe Step 4' class='mt-4 w-full max-w-[400px] rounded-lg shadow-md border border-indigo-100'>",
+      "이제 생성된 초기 상태의 앱이 Antigravity와 연결되었습니다.",
+      "Antigravity의 제일 우측에 AI 에이전트 입력 프롬프트 창이 보입니다. 만약 보이지 않는다면, Ctrl + L 키를 입력하면 토글 됩니다.<br><img src='/vibe6.png' alt='Vibe Agent UI' class='mt-4 w-full max-w-[600px] rounded-lg shadow-md border border-indigo-100'>",
+      "AI 에이전트 프롬프트에 <strong>Supabase와 연동되는 스케줄 관리 앱을 만들어줘</strong>라고 입력 후 요청합니다.<br><img src='/vibe8.png' alt='Vibe Prompt 2' class='mt-4 w-full max-w-[300px] rounded-lg shadow-md border border-indigo-100'>",
+      "<strong>Allow Once</strong>는 1단계씩 진행하기 위해 1회성 수락이고, <strong>Allow This Conversation</strong>은 이번 세션동안 에이전트의 자율 행동을 수락 하는 것입니다.<br><img src='/vibe7.png' alt='Vibe Prompt' class='mt-4 w-full max-w-[400px] rounded-lg shadow-md border border-indigo-100'>",
+      "수락이 필요한 단계에서 Allow 및 Accept 버튼을 눌러서 AI가 앱을 모두 작성할 수 있도록 진행시킵니다. 만약 도중에 사고처리를 하며 진행하지 않고 자율모드가 정지되면 Chat에서 '계속 진행해'라고 재명령을 내리시면 됩니다.",
+      "AI가 모든 작업을 완료 하였다면 이제 <strong>npm run dev</strong>으로 앱 서버를 구동시켜 로컬에서 확인합니다. AI 챗으로 서버를 실행시켜달라고 명령 할수 있으나, 서버 중지도 AI를 사용해야 합니다. 간단한 명령은 직접 터미널을 이용하는 습관이 좋습니다.  ",
+      "npm run dev로 앱서버를 실행 시키면, 좌측 하단에 다음과 같은 팝업이 나타납니다.<br>이때 <strong>Open in Browser</strong>를 누르면 자동으로 브라우저 탭이 열리게 됩니다.<br>팝업을 놓쳤거나 나타나지 않더라도 브라우저(크롬이나 엣지 등)를 열고 <strong>localhost:3000</strong>으로 접속하면 앱을 확인하실 수 있습니다.<br><img src='/vibe10.png' alt='Vibe Run Server Popup' class='mt-4 w-full max-w-[400px] rounded-lg shadow-md border border-indigo-100'>",
+      "만약 앱을 실행 시켰지만 그림과 같이 오류 로그가 발생한다면, 해당 로그를 마우스 드래그로 복사하여 AI 챗창에 붙여넣기 하시고 엔터를 치시면, AI가 해당 로그를 분석후 수정을 진행합니다. 이과정을 몇번 반복적으로 수행할 수 있습니다.<br>Supabase와 연동할수 있는 라이브러리 등을 설치하기도 합니다.<br><img src='/vibe13.png' alt='Vibe Error Log 1' class='mt-4 w-full max-w-[600px] rounded-lg shadow-md border border-indigo-100'><img src='/vibe14.png' alt='Vibe Error Log 2' class='mt-4 w-full max-w-[600px] rounded-lg shadow-md border border-indigo-100'>",
+      "모든 에러가 사라지고 접속한 브라우저에서 보이는 초기 앱의 모습입니다.<br><img src='/vibe11.png' alt='Vibe Init App' class='mt-4 w-full max-w-[700px] rounded-lg shadow-md border border-indigo-100'>",
+      "Supabase 키를 적용하지 않아 연동이 되지 않았습니다. 좌측 프로젝트 트리에서 <strong>.env</strong>를 더블 클릭해서 문서를 엽니다.<br><img src='/vibe17.png' alt='Vibe Env File' class='mt-4 w-full max-w-[200px] rounded-lg shadow-md border border-indigo-100'><img src='/vibe18.png' alt='Vibe Env File' class='mt-4 w-full max-w-[600px] rounded-lg shadow-md border border-indigo-100'>",
+      "브라우저에서 Suapbase에 접속한 뒤 프로젝트에 들어갑니다. 프로젝트 이름 밑의 URL위에 마우스 커서를 올리면 정보가 나타납니다.<br><img src='/vibe16.png' alt='Vibe Supabase Project URL' class='mt-4 w-full max-w-[400px] rounded-lg shadow-md border border-indigo-100'>",
+      "항목 13의 <strong>Project URL</strong>과 <strong>Publishable Key</strong>를 차례대로 Copy한 뒤 항목 12에 각각 붙여 넣기 한 후 Ctrl + S로 저장합니다.",
+      "Supabase 연결하고 앱 데이터를 저장하기 위한 테이블을 만들기 위해 AI에게 일을 시켜 보겠습니다.<br>보통의 경우 Antigravity의 Chat은 코딩을 시키는 용도로만 사용하시길 권장합니다. 개발에 필요한 라이브러리, CLI도구 등을 설치하는 것은 3단계에서 설치한 Gemini CLI가 가장 깔끔하고 실패없이 잘하는 일입니다.",
+      "Antigravity에서 터미널을 엽니다. 프롬프트에 <strong>gemini</strong>를 입력하고 엔터를 칩니다.<br><strong>Supabase CLI 설치하고, 앱에 필요한 테이블 생성해.</strong><br><img src='/vibe24.png' alt='Vibe Gemini Terminal' class='mt-4 w-full max-w-[600px] rounded-lg shadow-md border border-indigo-100'>",
+      "Gemini CLI가 필요한 허락을 요청하면, 수락 후 진행합니다. 입력이 필요한 항목(예: Y/n 또는 권한입력)이 있으면 <strong>Tab Key</strong>를 눌러 위치를 옮긴뒤 입력하면 됩니다.",
+      "Gemini가 Supabase CLI를 설치하고 테이블 생성을 완료하면, 앱을 실행시켜 연동이 잘 되었는지 확인합니다.<br><img src='/vibe23.png' alt='Vibe Supabase Table 1' class='mt-4 w-full max-w-[600px] rounded-lg shadow-md border border-indigo-100'><img src='/vibe22.png' alt='Vibe Supabase Table 2' class='mt-4 w-full max-w-[600px] rounded-lg shadow-md border border-indigo-100'>",
+      "이번 단게에서는 초기 앱을 생성하고, Antigravity로 앱을 제작한 뒤 Gemini CLI를 이용해 Supabsae 연동을 통해 로컬에서 우리가 만든 앱을 성공적으로 배포하였습니다.",
+      "다음 단계에서는 Github에 코드를 올리고 Vercel에 연결하여 웹에 배포하는 과정을 진행합니다.",
+    ],
+    code: null,
+    codes: [
+      {
+        code: "### 확인 : 프로젝트 디렉토리에서 npm run dev 실행 !!!\n### 서버 종료는 터미널에서 Ctrl + C\n\n~/vibetest$  cd my-todo-app           # 프로젝트 디렉토리로 이동 \n~/vibetest/my-todo-app$  npm run dev  # 로컬 서버로 앱 실행",
+        position: 7
+      }
+    ],
     isCodeMultiple: true
   },
   {
     id: 9,
-    title: "앱 생성 ➔ DB 연동 ➔ 배포",
-    desc: "바이브 코딩의 시작! AI와 대화하며 앱을 만들고 인터넷에 띄웁니다.",
+    title: "Github 연동 및 Vercel 배포",
+    desc: "작성한 앱 소스코드를 Github 저장소에 올리고 Vercel을 이용해 무료로 배포합니다.<br><br><strong class='text-indigo-700'>\
+    💡 [참고] Github에 처음 코드를 올릴 때 사용하는 명령어</strong><div class='mt-3 bg-[#1e1e1e] p-4 rounded-xl shadow-inner border border-slate-700 text-sm font-mono text-green-400 whitespace-pre overflow-x-auto leading-relaxed text-left'>git add .\ngit commit -m \"첫 번째 일정 관리 앱 완성!\"\ngit branch -M main\ngit remote add origin [내깃허브주소]\ngit push -u origin main</div>",
     tasks: [
-      "Antigravity의 터미널에서 다음과 같이 명령어를 차례대로 입력합니다.(처음은 사용자 home(~) 디렉토리입니다.)<br><img src='/vibe1.png' alt='Vibe Coding' class='mt-4 w-full max-w-[800px] rounded-lg shadow-md border border-indigo-100'>",
-      "생성된 프로젝트를 Antigravity로 연결 합니다. 화면을 참조하며 진행하세요.<br><img src='/vibe2.png' alt='Vibe Step 1' class='mt-4 w-full max-w-[300px] rounded-lg shadow-md border border-indigo-100'><img src='/vibe3.png' alt='Vibe Step 2' class='mt-4 w-full max-w-[600px] rounded-lg shadow-md border border-indigo-100'><img src='/vibe4.png' alt='Vibe Step 3' class='mt-4 w-full max-w-[400px] rounded-lg shadow-md border border-indigo-100'><img src='/vibe5.png' alt='Vibe Step 4' class='mt-4 w-full max-w-[400px] rounded-lg shadow-md border border-indigo-100'>",
-      "이제 생성된 초기 상태의 앱이 Antigravity와 연결되었습니다.",
-      "Antigravity의 제일 우측에 AI 에이전트 입력 프롬프트 창이 보입니다. 만약 보이지 않는다면, Ctrl + L 키를 입력하면 토글 됩니다.<br><img src='/vibe6.png' alt='Vibe Agent UI' class='mt-4 w-full max-w-[600px] rounded-lg shadow-md border border-indigo-100'>",
-      "AI 에이전트 프롬프트에 <strong>Supabase와 연동되는 스케줄 관리 앱을 만들어줘</strong>라고 요청하고 코드를 적용합니다.<br><img src='/vibe7.png' alt='Vibe Prompt' class='mt-4 w-full max-w-[400px] rounded-lg shadow-md border border-indigo-100'>",
-      "<strong>Allow Once</strong>는 1단계씩 진행하기 위해 1회성 수락이고, <strong>Allow This Conversation</strong>은 이번 세션동안 에이전트의 자율 행동을 수락 하는 것입니다.",
-      "<code>npm run dev</code>로 로컬에서 확인합니다.",
-      "Supabase 키를 복사한 뒤 AI에게 DB 연동 코드를 요청하여 적용합니다.",
-      "아래 명령어로 Github에 코드를 올립니다.",
-      "Vercel 대시보드에서 깃허브 저장소를 Import하고 환경변수를 넣은 뒤 Deploy합니다."
+      "우선 Github에 소스코드를 올리기 전에 보안 관련 사항들을 처리할 필요가 있습니다. 바로 Supabase의 URL과 Key 코드가 노출되면 안되기 때문입니다. .env 파일을 .gitignore 파일에 추가하여 Github에 올라가지 않도록 합니다.<br><img src='/vibe17.png' alt='Vibe Env File' class='mt-4 w-full max-w-[200px] rounded-lg shadow-md border border-indigo-100'>",
+      ".gitignore 파일의 아무 곳에나 .env를 추가한 후(AI Caht으로 '.env를 github에 올리지 않도록 해줘' 라고 명령해도 됨), Antigavity 터미널에서 gemini CLI를 실행합니다.(이미 있다면 생략)<br><img src='/vibe19.png' alt='Vibe Gemini Launch' class='mt-4 w-full max-w-[600px] rounded-lg shadow-md border border-indigo-100'>",
+      "gemini CLI 프롬프트에서, \"프로젝트를 Github '저장소이름'에 업로드 하고, supabase 환경변수도 생성해줘.\" 라고 입력합니다.<br><img src='/vibe25.png' alt='Vibe Gemini Github Upload' class='mt-4 w-full max-w-[600px] rounded-lg shadow-md border border-indigo-100'>",
+      "gemini CLI가 작업을 완료하면, Github에 접속하여 저장소가 생성되었는지 확인합니다.<br><img src='/vibe26.png' alt='Vibe Github Repo Check' class='mt-4 w-full max-w-[600px] rounded-lg shadow-md border border-indigo-100'>",
+      "Vercel 대시보드의 프로젝트에서 <strong>Add New Project</strong>를 클릭합니다.<br><img src='/vibe27.png' alt='Vibe Vercel New Project' class='mt-4 w-full max-w-[150px] rounded-lg shadow-md border border-indigo-100'>",
+      "Github의 저장소 리스트가 보이면, 프로젝트를 업로드한 Github 저장소를 Import 합니다.<br><img src='/vibe28.png' alt='Vibe Github Repo Import' class='mt-4 w-full max-w-[500px] rounded-lg shadow-md border border-indigo-100'>",
+      "<strong>Environment Variables</strong> 탭을 열고, .env 파일의 내용을 복사하여 붙여넣은 뒤 <strong>Deploy</strong> 버튼을 클릭합니다.<br><img src='/vibe29.png' alt='Vibe Vercel Env' class='mt-4 w-full max-w-[600px] rounded-lg shadow-md border border-indigo-100'><img src='/vibe33.png' alt='Vibe Vercel Deploy' class='mt-4 w-full max-w-[600px] rounded-lg shadow-md border border-indigo-100'>",
+      "배포 완료까지 1 분정도 기다립니다.<br><img src='/vibe30.png' alt='Vibe Vercel Deploy Done' class='mt-4 w-full max-w-[600px] rounded-lg shadow-md border border-indigo-100'>",
+      "축하합니다. 배포가 완료 되었습니다.<br><img src='/vibe31.png' alt='Vibe Vercel Deploy Success' class='mt-4 w-full max-w-[600px] rounded-lg shadow-md border border-indigo-100'>",
+      "Overview에서 생성한 프로젝트로 들어가면, 디테일 정보를 볼수 있습니다. 포인트 영역의 도메인이 외부에서 접속할 수 있는 URL이며, 클릭하면 브라우저에서 앱이 열립니다.<br><img src='/vibe32.png' alt='Vibe Vercel Project Details' class='mt-4 w-full max-w-[600px] rounded-lg shadow-md border border-indigo-100'>",
+      "다음 단계에서는 수정한 소스코드를 Github에 올리고 Vercel을 이용해 자동으로 업데이트하는 과정을 진행합니다."
     ],
-    code: "git add .\ngit commit -m \"첫 번째 일정 관리 앱 완성!\"\ngit branch -M main\ngit remote add origin [내깃허브주소]\ngit push -u origin main",
+    code: null,
+    codes: [],
     isCodeMultiple: true
   },
   {
     id: 10,
     title: "코드 수정 후 자동 배포",
-    desc: "이제 코드를 수정하고 깃허브에 올리기만 하면 자동으로 업데이트 됩니다.",
+    desc: "이제 코드를 수정하고 Github에 올리기만 하면 자동으로 Vercel에서 업데이트 됩니다.",
     tasks: [
-      "편집기에서 코드를 수정하고 저장(Ctrl+S)합니다.",
-      "아래 명령어 세 줄을 복사하여 실행하거나, Gemini에게 올려달라고 요청합니다.",
-      "Vercel이 스스로 감지하여 1~2분 뒤 웹사이트를 자동 업데이트 합니다!"
+      "편집기에서 코드를 직접 수정하거나, AI Chat에서 제목을 바꿔달라고 지시한 후 작업이 완료되면 저장(Ctrl+S)합니다.",
+      "Gemini CLI를 실행하여 \"프로젝트를 Github에 업로드 해.\" 라고 프롬프트 입력합니다. 또는 아래의 명령어로 직접 업로드합니다.",
+      "Github 업로드가 완료되면 Vercel이 스스로 감지하여 1~2분 뒤 웹사이트를 자동 업데이트 합니다! 몇 분후 URL로 접속하여 수정된 내용을 확인해 보세요. ;)"
     ],
     code: "git add .\ngit commit -m \"앱 제목 디자인 수정\"\ngit push origin main",
+    isCodeMultiple: true
+  },
+  {
+    id: 11,
+    title: "가이드 작성을 마치며...",
+    desc: "여기까지 따라오시느라 정말 고생 많으셨습니다. 여러분 스스로의 힘으로 아이디어를 실제 웹 애플리케이션으로 구현해내는 놀라운 경험을 하셨습니다.",
+    tasks: [
+      "이제 여러분은 <strong>바이브 코딩(Vibe Coding)</strong>의 강력함을 직접 체험하셨습니다.",
+      "복잡한 프로그래밍 언어 문법을 모두 외우지 않아도, 여러분의 창의적인 생각과 기획력만 있다면 AI가 코딩을 돕고 문제를 해결해 줍니다.",
+      "이번 튜토리얼에서 만든 일정 관리 앱은 시작에 불과합니다. 앞으로 여러분만의 멋진 아이디어를 자유롭게 펼쳐 보세요!",
+      "언제든 막히는 부분이 있다면, <strong>바이브 코딩(Vibe Coding)</strong>과 함께 대화하며 하나씩 풀어갈 수 있습니다. 여러분의 멋진 개발 여정을 항상 응원하겠습니다! 🚀"
+    ],
+    code: null,
+    codes: [],
     isCodeMultiple: true
   }
 ];
@@ -172,7 +248,7 @@ export default function VibeCodingDashboard() {
       const isCompleted = prev.includes(currentStep);
       const newSteps = isCompleted ? prev.filter(id => id !== currentStep) : [...prev, currentStep];
 
-      if (!isCompleted && currentStep < 10) {
+      if (!isCompleted && currentStep < 11) {
         setTimeout(() => {
           setCurrentStep(currentStep + 1);
         }, 600);
@@ -184,7 +260,7 @@ export default function VibeCodingDashboard() {
 
   const navigate = (direction: number) => {
     const nextStep = currentStep + direction;
-    if (nextStep >= 1 && nextStep <= 10) {
+    if (nextStep >= 1 && nextStep <= 11) {
       setCurrentStep(nextStep);
     }
   };
@@ -219,16 +295,39 @@ export default function VibeCodingDashboard() {
     }
   };
 
+  const renderCodeBlock = (code: string) => (
+    <div className="w-full bg-[#1e1e1e] rounded-xl overflow-hidden shadow-inner border border-slate-700">
+      <div className="bg-[#2d2d2d] px-4 py-2 flex items-center justify-between border-b border-slate-600">
+        <div className="flex gap-2">
+          <div className="w-3 h-3 rounded-full bg-red-500"></div>
+          <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
+          <div className="w-3 h-3 rounded-full bg-green-500"></div>
+        </div>
+        <span className="text-xs text-slate-400 font-mono">Terminal (WSL)</span>
+        <button
+          onClick={() => copyCode(code)}
+          className={`text-xs text-white px-3 py-1 rounded transition-colors flex items-center gap-1 ${copiedText ? 'bg-emerald-600' : 'bg-slate-700 hover:bg-slate-600'}`}
+        >
+          {copiedText ? `✨ 복사됨!` : `📋 복사하기`}
+        </button>
+      </div>
+      <div className="p-4 overflow-x-auto text-sm font-mono text-green-400 whitespace-pre leading-relaxed custom-scrollbar-terminal max-h-[400px]">
+        {code}
+      </div>
+    </div>
+  );
+
   const step = guideData.find(s => s.id === currentStep)!;
   const isCompleted = completedSteps.includes(step.id);
   const completeCount = completedSteps.length;
   const percentage = Math.round((completeCount / 10) * 100);
 
   let motiText = "시작이 반입니다! 첫 번째 단계를 진행해 보세요.";
-  if (completeCount > 0 && completeCount < 5) motiText = "순조로운 출발입니다! 계속 진행해 볼까요?";
-  else if (completeCount >= 5 && completeCount < 9) motiText = "절반 이상 오셨네요! 멋진 앱이 곧 탄생합니다.";
-  else if (completeCount === 9) motiText = "거의 다 왔습니다! 마지막 배포만 남았어요.";
-  else if (completeCount === 10) motiText = "🎉 완벽합니다! 바이브 코딩 마스터가 되셨습니다.";
+  if (completeCount >= 2 && completeCount <= 3) motiText = "순조로운 출발입니다! 차근차근 나아가 볼까요?";
+  else if (completeCount >= 4 && completeCount <= 5) motiText = "기초가 튼튼해졌습니다! 아주 잘하고 계십니다.";
+  else if (completeCount >= 6 && completeCount <= 7) motiText = "절반을 넘어섰습니다! 멋진 앱이 곧 완성됩니다.";
+  else if (completeCount >= 8 && completeCount <= 9) motiText = "고지가 눈앞입니다! 마지막까지 화이팅!";
+  else if (completeCount >= 10) motiText = "🎉 완벽합니다! 바이브 코딩 마스터가 되셨습니다.";
 
   const radius = 90;
   const circumference = 2 * Math.PI * radius;
@@ -293,10 +392,10 @@ export default function VibeCodingDashboard() {
                         }`}
                     >
                       <span className="text-sm font-semibold truncate pr-2">
-                        {s.id}. {s.title}
+                        {s.id === 11 ? s.title : `${s.id}. ${s.title}`}
                       </span>
                       <span className={`text-lg transition-opacity ${isActive ? 'opacity-100' : 'opacity-50 group-hover:opacity-100'}`}>
-                        {isItemCompleted ? '✅' : '⏳'}
+                        {s.id === 11 ? null : (isItemCompleted ? '✅' : '⏳')}
                       </span>
                     </button>
                   );
@@ -326,37 +425,47 @@ export default function VibeCodingDashboard() {
                   dangerouslySetInnerHTML={{ __html: step.desc }}
                 />
 
-                <h4 className="text-lg font-bold text-slate-800 mb-4 flex items-center gap-2">🎯 해야 할 일</h4>
+                {(step as any).codes && (step as any).codes.filter((c: any) => c.position === 'desc').map((c: any, i: number) => (
+                  <div key={`desc-code-${i}`} className="mb-8 w-full max-w-full">
+                    {renderCodeBlock(c.code as string)}
+                  </div>
+                ))}
+
+                <h4 className="text-lg font-bold text-slate-800 mb-4 flex items-center gap-2">
+                  {step.id === 11 ? '💡 생각 마무리' : '🎯 해야 할 일'}
+                </h4>
                 <ul className="mb-6 flex-grow space-y-3">
                   {step.tasks.map((task, idx) => (
-                    <li key={idx} className="flex items-start gap-3">
-                      <span className="flex-shrink-0 w-6 h-6 rounded-full bg-indigo-100 text-indigo-700 flex items-center justify-center text-xs font-bold mt-0.5">
-                        {idx + 1}
-                      </span>
-                      <span className="text-slate-700" dangerouslySetInnerHTML={{ __html: task }} />
-                    </li>
+                    <React.Fragment key={idx}>
+                      <li className="flex items-start gap-3 w-full">
+                        {step.id !== 11 && (
+                          <span className="flex-shrink-0 w-6 h-6 rounded-full bg-indigo-100 text-indigo-700 flex items-center justify-center text-xs font-bold mt-0.5">
+                            {idx + 1}
+                          </span>
+                        )}
+                        <div className="text-slate-700 w-full flex-grow">
+                          <span dangerouslySetInnerHTML={{ __html: task }} />
+                          {step.code && (step as any).codePosition === idx && (
+                            <div className="mt-4 mb-2 w-full max-w-full">
+                              {renderCodeBlock(step.code as string)}
+                            </div>
+                          )}
+                          {(step as any).codes && (step as any).codes.filter((c: any) => c.position === idx).map((c: any, i: number) => (
+                            <React.Fragment key={`code-${i}`}>
+                              <div className="mt-4 mb-2 w-full max-w-full">
+                                {renderCodeBlock(c.code as string)}
+                              </div>
+                            </React.Fragment>
+                          ))}
+                        </div>
+                      </li>
+                    </React.Fragment>
                   ))}
                 </ul>
 
-                {step.code && (
-                  <div className="mt-8 bg-[#1e1e1e] rounded-xl overflow-hidden shadow-inner border border-slate-700">
-                    <div className="bg-[#2d2d2d] px-4 py-2 flex items-center justify-between border-b border-slate-600">
-                      <div className="flex gap-2">
-                        <div className="w-3 h-3 rounded-full bg-red-500"></div>
-                        <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
-                        <div className="w-3 h-3 rounded-full bg-green-500"></div>
-                      </div>
-                      <span className="text-xs text-slate-400 font-mono">Terminal (WSL)</span>
-                      <button
-                        onClick={() => copyCode(step.code as string)}
-                        className={`text-xs text-white px-3 py-1 rounded transition-colors flex items-center gap-1 ${copiedText ? 'bg-emerald-600' : 'bg-slate-700 hover:bg-slate-600'}`}
-                      >
-                        {copiedText ? `✨ 복사됨!` : `📋 복사하기`}
-                      </button>
-                    </div>
-                    <div className="p-4 overflow-x-auto text-sm font-mono text-green-400 whitespace-pre leading-relaxed custom-scrollbar-terminal">
-                      {step.code}
-                    </div>
+                {step.code && (step as any).codePosition === undefined && (
+                  <div className="mt-8">
+                    {renderCodeBlock(step.code as string)}
                   </div>
                 )}
 
@@ -368,17 +477,21 @@ export default function VibeCodingDashboard() {
                     <span>⬅️</span> 이전
                   </button>
 
-                  <button
-                    onClick={toggleCompletion}
-                    className={`flex-grow max-w-[200px] mx-4 py-3 rounded-xl font-bold text-white transition-all transform hover:scale-105 shadow-lg flex items-center justify-center gap-2 ${isCompleted ? 'bg-emerald-500 hover:bg-emerald-600 shadow-emerald-500/30' : 'bg-indigo-600 hover:bg-indigo-700 shadow-indigo-600/30'
-                      }`}
-                  >
-                    {isCompleted ? '✅ 완료 취소' : '🎉 완료 표시'}
-                  </button>
+                  {step.id !== 11 ? (
+                    <button
+                      onClick={toggleCompletion}
+                      className={`flex-grow max-w-[200px] mx-4 py-3 rounded-xl font-bold text-white transition-all transform hover:scale-105 shadow-lg flex items-center justify-center gap-2 ${isCompleted ? 'bg-emerald-500 hover:bg-emerald-600 shadow-emerald-500/30' : 'bg-indigo-600 hover:bg-indigo-700 shadow-indigo-600/30'
+                        }`}
+                    >
+                      {isCompleted ? '✅ 완료 취소' : '🎉 완료 표시'}
+                    </button>
+                  ) : (
+                    <div className="flex-grow max-w-[200px] mx-4"></div>
+                  )}
 
                   <button
                     onClick={() => navigate(1)}
-                    className={`text-slate-500 hover:text-indigo-600 font-medium px-4 py-2 flex items-center gap-1 ${step.id === 10 ? 'invisible' : ''}`}
+                    className={`text-slate-500 hover:text-indigo-600 font-medium px-4 py-2 flex items-center gap-1 ${step.id === 11 ? 'invisible' : ''}`}
                   >
                     다음 <span>➡️</span>
                   </button>
